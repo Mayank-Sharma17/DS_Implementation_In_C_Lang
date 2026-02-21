@@ -6,12 +6,12 @@ struct node {
     struct node *prev;
 };
 typedef struct node node;
-node *head;
+node *head, *temp;
 
 void create() {
     int choice;
     head = NULL;
-    node *newnode, *temp;
+    node *newnode;
 
     while (choice)
     {
@@ -56,7 +56,7 @@ void insertBegin() {
 }
 
 void insertEnd() {
-    node *ptr, *temp = head;
+    node *ptr;
     ptr = (node*)malloc(sizeof(node));
     printf("\nEnter data : ");
     scanf("%d", &ptr->data);
@@ -67,11 +67,9 @@ void insertEnd() {
     if(head == NULL) {
         head = ptr;
     } else {
-        while(temp->next != NULL) {
-            temp = temp->next;
-        }
         temp->next = ptr;
         ptr->prev = temp;
+        temp = ptr;
     }
 }
 
@@ -102,6 +100,51 @@ void insertMid() {
     }
 }
 
+void deleteBegin() {
+    node *temp;
+    if(head == NULL) {
+        printf("\nList is Empty");
+    } else {
+        temp = head;
+        head = head->next;
+        head->prev = NULL;
+        free(temp);
+    }
+}
+
+void deleteEnd() {
+    node *temp2;
+    if(head == NULL) {
+        printf("\nList is Empty");
+    } else {
+        temp2 = temp;
+        temp->prev->next = NULL;
+        temp = temp->prev;
+        free(temp2);
+    }
+}
+
+void deleteMid() {
+    int pos, i=1;
+    node* temp2 = head;
+    printf("\nEnter position : ");
+    scanf("%d", &pos);
+
+    if(pos == 1) {
+        deleteBegin();
+    } else {
+        while(i < pos)
+        {
+            temp2 = temp2->next;
+            i++; 
+        }
+        temp2->prev->next = temp2->next;
+        temp2->next->prev = temp2->prev;
+        free(temp2);
+    }
+    
+}
+
 void display() {
     node *temp = head;
     printf("\nList content : ");
@@ -128,5 +171,15 @@ int main() {
 
     insertMid();
     display();
+
+    deleteBegin();
+    display();
+
+    deleteEnd();
+    display();
+
+    deleteMid();
+    display();
+
     return 0;
 }
