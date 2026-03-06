@@ -18,7 +18,6 @@ int* insert(int *arr, int elems, int newelem, int pos) {
     }
     arr[pos] = newelem;
     return arr;
-
 }
 
 // delete element from the array

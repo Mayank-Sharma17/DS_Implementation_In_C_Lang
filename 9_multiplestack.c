@@ -5,18 +5,8 @@ int arr[MAX];
 int topA = -1;
 int topB = MAX;
 
-int isOverflow() {
-    return (topA + 1 == topB);
-}
-int isEmptyA() {
-    return (topA == -1);
-}
-int isEmptyB() {
-    return (topB == MAX);
-}
-
 void pushA(int x) {
-    if (isOverflow()) {
+    if (topA + 1 == topB) {
         printf("Stack Overflow\n");
         return;
     }
@@ -24,21 +14,21 @@ void pushA(int x) {
     printf("Inserted %d into Stack A\n", x);
 }
 void popA() {
-    if (isEmptyA()) {
+    if (topA == -1) {
         printf("Stack A Underflow\n");
         return;
     }
     printf("Deleted %d from Stack A\n", arr[topA--]);
 }
 void peekA() {
-    if (isEmptyA()) {
+    if (topA == -1) {
         printf("Stack A is Empty\n");
         return;
     }
     printf("Top of Stack A: %d\n", arr[topA]);
 }
 void displayA() {
-    if (isEmptyA()) {
+    if (topA == -1) {
         printf("Stack A is Empty\n");
         return;
     }
@@ -51,7 +41,7 @@ void displayA() {
 
 
 void pushB(int x) {
-    if (isOverflow()) {
+    if (topA + 1 == topB) {
         printf("Stack Overflow\n");
         return;
     }
@@ -59,21 +49,21 @@ void pushB(int x) {
     printf("Inserted %d into Stack B\n", x);
 }
 void popB() {
-    if (isEmptyB()) {
+    if (topB == MAX) {
         printf("Stack B Underflow\n");
         return;
     }
     printf("Deleted %d from Stack B\n", arr[topB++]);
 }
 void peekB() {
-    if (isEmptyB()) {
+    if (topB == MAX) {
         printf("Stack B is Empty\n");
         return;
     }
     printf("Top of Stack B: %d\n", arr[topB]);
 }
 void displayB() {
-    if (isEmptyB()) {
+    if (topB == MAX) {
         printf("Stack B is Empty\n");
         return;
     }

@@ -17,7 +17,6 @@ NODE *getnode() {
 }
 
 void createList(int n) {
-    int i;
     NODE *ptr, *temp;
     for(int i=0; i<n; i++) {
         ptr = getnode();
